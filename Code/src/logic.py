@@ -20,7 +20,7 @@ def pattern_positions(pattern_dictionary):
             print(count)
             if count > 2:
                 #print("IT'S a pattern!!!!")
-                k=1
+                k="Legg til kode som legger keys inn i en dict med start_key, slutt_key, edge_start, edge_end"
             else:
                 #print("NOT")
                 k=2
