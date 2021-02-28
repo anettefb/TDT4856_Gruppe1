@@ -9,6 +9,6 @@ The folder named Code contains the code for processing the measurements.
  * User manual: http://bucket.download.slamtec.com/e680b4e2d99c4349c019553820904f28c7e6ec32/LM108_SLAMTEC_rplidarkit_usermaunal_A1M8_v1.0_en.pdf 
 
 
-##Code-folder:
+## Code-folder:
 The code folder contains two folders. "Data" containing the data we want to process and "src" containing the codes we create to process the data.
 * pattern_positions.py creates a list kontaining the keys/angles to the pattern. (Without the edges.)
