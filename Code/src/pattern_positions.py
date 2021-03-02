@@ -15,16 +15,12 @@ just the values for the positions where the depth differs from
     is_pattern = False
 
     for key in pattern_dictionary:
-        if pattern_dictionary[key] > pattern_dictionary[prev_key] and pattern_dictionary[key] - \
-                pattern_dictionary[prev_key] > threshold:
-            is_pattern = False
-            main_key = key
-            count = 0
-        elif pattern_dictionary[key] < pattern_dictionary[main_key] and pattern_dictionary[main_key] - \
-                pattern_dictionary[key] > threshold:
+        if pattern_dictionary[key] < pattern_dictionary[main_key] and \ pattern_dictionary[main_key] - pattern_dictionary[key] > threshold:
             count += 1
             is_pattern = True
-            print(count)
+
+            if prev_key == main_key:
+                edges.append(prev_key)
 
             if count == 2:
                 # edge_start!
@@ -33,13 +29,13 @@ just the values for the positions where the depth differs from
 
             if count > 2:
                 angles.append(key)
-
-        elif pattern_dictionary[key] >= pattern_dictionary[main_key]:
-            is_pattern = False
+                
+        else:
             main_key = key
             count = 0
 
         prev_key = key
+        print(main_key)
     #print(angles)
     #print(edges)
-    return angles
+    return angles, edges
