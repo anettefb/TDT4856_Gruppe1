@@ -19,13 +19,11 @@ just the values for the positions where the depth differs from
                 pattern_dictionary[key] > threshold:
             count += 1
 
-            if prev_key == main_key:
-                edges.append(prev_key)
-
             if count == 2:
                 # edge_start!
                 angles.append(prev_key)
                 angles.append(key)
+                edges.append(main_key)
 
             if count > 2:
                 angles.append(key)
@@ -35,7 +33,7 @@ just the values for the positions where the depth differs from
             count = 0
 
         prev_key = key
-        print(main_key)
+
     #print(angles)
     #print(edges)
     return angles, edges
