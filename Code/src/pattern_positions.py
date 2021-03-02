@@ -12,12 +12,12 @@ just the values for the positions where the depth differs from
 
     edges = []
     angles = []
-    is_pattern = False
+
 
     for key in pattern_dictionary:
-        if pattern_dictionary[key] < pattern_dictionary[main_key] and \ pattern_dictionary[main_key] - pattern_dictionary[key] > threshold:
+        if pattern_dictionary[key] < pattern_dictionary[main_key] and pattern_dictionary[main_key] - \
+                pattern_dictionary[key] > threshold:
             count += 1
-            is_pattern = True
 
             if prev_key == main_key:
                 edges.append(prev_key)
@@ -29,7 +29,7 @@ just the values for the positions where the depth differs from
 
             if count > 2:
                 angles.append(key)
-                
+
         else:
             main_key = key
             count = 0
