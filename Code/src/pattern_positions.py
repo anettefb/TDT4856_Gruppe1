@@ -6,6 +6,7 @@ edges of the pattern for calculating the depth.
 """
     count = 0
     threshold = 1.8
+    pattern_threshold = 2
 
     prev_key = next(iter(pattern_dictionary))
     main_key = next(iter(pattern_dictionary))
@@ -19,13 +20,13 @@ edges of the pattern for calculating the depth.
                 pattern_dictionary[key] > threshold:
             count += 1
 
-            if count == 2:
+            if count == pattern_threshold:
                 # edge_start!
                 angles.append(prev_key)
                 angles.append(key)
                 edges.append(main_key)
 
-            if count > 2:
+            if count > pattern_threshold:
                 angles.append(key)
 
         else:
