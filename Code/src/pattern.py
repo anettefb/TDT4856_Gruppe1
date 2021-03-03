@@ -17,7 +17,18 @@ edges of the pattern for calculating the depth.
     depth_pattern = []
 
     for key in pattern_dictionary:
-        if pattern_dictionary[key] < pattern_dictionary[main_key] and pattern_dictionary[main_key] - \
+    
+        if pattern_dictionary[key] > pattern_dictionary[prev_key] and pattern_dictionary[key] - \
+            pattern_dictionary[prev_key] > threshold:
+            if prev_key in angles:
+                c = pattern_dictionary[main_key] - d/count
+                depth_pattern.append(c)
+                d = 0
+            
+            main_key = key
+            count = 0
+                
+        elif pattern_dictionary[key] < pattern_dictionary[main_key] and pattern_dictionary[main_key] - \
                 pattern_dictionary[key] > threshold:
             count += 1
 
