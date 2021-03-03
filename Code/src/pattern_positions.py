@@ -33,7 +33,7 @@ edges of the pattern for calculating the depth.
             if count > pattern_threshold:
                 angles.append(key)
                 d += pattern_dictionary[key]
-            print(d)
+            #print(d)
                 
 
         else:
