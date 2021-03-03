@@ -1,4 +1,5 @@
 from pattern_positions import pattern_positions
+from check_pattern import check_pattern
 
 dict_wheel = { 74: 500,
 75: 496,
