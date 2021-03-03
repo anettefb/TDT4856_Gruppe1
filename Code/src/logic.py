@@ -1,35 +1,60 @@
-from pattern_positions import pattern_positions
-from check_pattern import check_pattern
+from files import file_handling, measurements
+from pattern import *
+from data_prep import *
 
-dict_wheel = { 74: 500,
-75: 496,
-76: 495,
-77: 496,
-78: 495,
-79: 502,
-80: 501,
-81: 502,
-82: 501,
-83: 494,
-84: 494,
-85: 494,
-86: 494,
-87: 500,
-88: 500,
-89: 500,
-90: 498,
-91: 498,
-92: 498,
-93: 500,
+dict_wheel = {
+79.1: 502,
+80.1: 501,
+81.1: 502,
+82.1: 501,
+83.1: 494,
+84.1: 494,
+85.1: 494,
+86.1: 494,
+87.1: 500,
+89.1: 500,
+90.1: 498,
+91.1: 498,
+92.1: 498,
+93.1: 500,
+94.1: 500,
+95.1: 502,
+96.1: 494,
+97.1: 494,
+98.1: 495,
+88.1: 500,
+99.1: 500,
+100.1: 500,
+101.1: 501,
 }
 
 # General information
 DATA_START = 80.0
 DATA_END = 100.0
 UNIT = "mm"
-midangle = (DATA_START-DATA_END)/2
+MIDANGLE = (DATA_START-DATA_END)/2
 WINTER_THRESHOLD = 5 #mm
 SUMMER_THRESHOLD = 1.6 #mm
+
+
+
+    
+"""
+def triangulate_measurements(measurement_dict):
+    DATA_START = 80.0
+    DATA_END = 100.0
+    mid_angle = (DATA_END-DATA_START)/2
+    
+    useful_dict = {}
+    
+    for key in measurement_dict:
+    
+"""
+    
+
+
+
+"""
 
 
 #run functions
@@ -40,10 +65,25 @@ print(pattern_depth,"\n")
 
 print(ver)
 
-
-        
-
+"""
 
 
+def main():
+    file_handling()
+    #print(measurements)
+    data = extract_info(measurements)
+    print(data)
+
+    pattern, start_edges, pattern_depth = pattern_positions(data) # finding the postitions for mønsteret
+    ver = check_pattern(pattern_depth)
+    print(f"PATTERN: {pattern}")
+    print(f"Edges: {start_edges}")
+    print(ver)
+
+
+
+if __name__ == "__main__":
+    main()
+    
 
 
