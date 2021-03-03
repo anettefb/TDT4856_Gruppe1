@@ -7,7 +7,7 @@ import re
 _inputfile_path = ""
 measurements = {}
 
-def main():
+def file_handling():
     parse(sys.argv[1:])
     load()
 
@@ -47,6 +47,3 @@ def load():
             angule = float(list_line[0])
             distance = float(list_line[1])
             measurements[angule] = distance
-
-if __name__ == "__main__":
-    main()
