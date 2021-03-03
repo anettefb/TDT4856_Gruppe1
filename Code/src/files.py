@@ -1,18 +1,22 @@
 import sys
 import os
 import getopt
+import re
 
 
 _inputfile_path = ""
 measurements = {}
 
+def main():
+    parse(sys.argv[1:])
+    load()
+
 def help():
-    print("python files.py -i <inputfile> [-h]")
+    print("This is a help message. Run the program as follows:")
+    print("python(3) files.py -i <inputfile> [-h]")
 
 def parse(argv):
-    print("Number of arguments: ", len(sys.argv), "arguments")
-    print("Argument List: ", str(sys.argv))
-
+    global _inputfile_path
     try:
         opts, args = getopt.getopt(argv, "hi:", ["ifile"])
     except getopt.GetoptError:
@@ -29,11 +33,20 @@ def parse(argv):
     if not os.path.exists(_inputfile_path):
         help()
         sys.exit(2)
-    print("Path is ", _inputfile_path)
+    print("Path is valid: " + str(_inputfile_path) + '\n')
 
 def load():
+    global measurements
     with open(_inputfile_path, 'r') as file:
-        pass
+        for line in file:
+            list_line = (line.rstrip()).split(' ')
+            if len(list_line) < 2:
+                continue
+            elif re.match(r'^-?\d+(?:\.\d+)$', list_line[0]) is None:
+                continue
+            angule = float(list_line[0])
+            distance = float(list_line[1])
+            measurements[angule] = distance
 
 if __name__ == "__main__":
-    parse(sys.argv[1:])
+    main()
