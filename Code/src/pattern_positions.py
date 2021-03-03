@@ -1,7 +1,7 @@
 def pattern_positions(pattern_dictionary):
     """ Will find the position of the different patterns and return a list
-with the angles (keys) where the pattern is. It does not include the edges,
-just the values for the positions where the depth differs from 
+with the angles (keys) where the pattern is. It also returns the starting 
+edges of the pattern for calculating the depth. 
 
 """
     count = 0
