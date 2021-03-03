@@ -34,10 +34,9 @@ SUMMER_THRESHOLD = 1.6 #mm
 
 #run functions
 pattern, start_edges, pattern_depth = pattern_positions(dict_wheel) # finding the postitions for mønsteret
-
-print(pattern_depth)
-print()
 ver = check_pattern(pattern_depth)
+
+print(pattern_depth,"\n")
 
 print(ver)
 
