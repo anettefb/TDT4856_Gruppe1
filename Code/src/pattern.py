@@ -1,65 +1,54 @@
 def pattern_positions(pattern_dictionary):
     """ Will find the position of the different patterns and return a list
-with the angles (keys) where the pattern is. It also returns the starting 
+with the angles (keys) where the pattern is. It also returns the starting
 edges of the pattern for calculating the depth.
 """
     count = 0
     threshold = 1.8
-    pattern_threshold = 2
+    pattern_threshold = 1
 
-    prev_key = next(iter(pattern_dictionary))
-    main_key = next(iter(pattern_dictionary))
-    
-    d = 0
+    prev_key = list(pattern_dictionary.keys())[0]
+    main_key = list(pattern_dictionary.keys())[0]
 
-    edges = []
+    c = 0
+    edges_end = []
     angles = []
     depth_pattern = []
 
     for key in pattern_dictionary:
-    
-        if pattern_dictionary[key] > pattern_dictionary[prev_key] and pattern_dictionary[key] - \
-            pattern_dictionary[prev_key] > threshold:
+
+        if pattern_dictionary[key] < pattern_dictionary[prev_key] and \
+                pattern_dictionary[prev_key] - pattern_dictionary[key] > threshold:
             if prev_key in angles:
-                c = pattern_dictionary[main_key] - d/count
-                depth_pattern.append(c)
-                d = 0
-            
-            main_key = key
+                edges_end.append(key)
+                d = c/count - pattern_dictionary[main_key]
+                print(d)
+                depth_pattern.append(d)
             count = 0
-                
-        elif pattern_dictionary[key] < pattern_dictionary[main_key] and pattern_dictionary[main_key] - \
-                pattern_dictionary[key] > threshold:
+            main_key = key
+            c = 0
+
+        elif pattern_dictionary[key] > pattern_dictionary[main_key] and \
+                pattern_dictionary[key] - pattern_dictionary[main_key] > threshold:
             count += 1
-
-            if count == pattern_threshold:
-                # edge_start!
-                angles.append(prev_key)
+            if count >= pattern_threshold:
+                c += pattern_dictionary[key]
                 angles.append(key)
-                edges.append(main_key)
-                d += pattern_dictionary[prev_key]
-                d += pattern_dictionary[key]
-
-            if count > pattern_threshold:
-                angles.append(key)
-                d += pattern_dictionary[key]
-            #print(d)
-                
-
+                print(c)
+                print(count)
+            if key == list(pattern_dictionary.keys())[-1]:
+                depth_pattern.append(pattern_dictionary[key] - pattern_dictionary[main_key])
         else:
             if prev_key in angles:
-                c = pattern_dictionary[main_key] - d/count
-                depth_pattern.append(c)
-                d = 0
-            
+                edges_end.append(key)
+                d = c/count - pattern_dictionary[key]
+                print(d)
             main_key = key
             count = 0
-            
+            c = 0
         prev_key = key
 
-    #print(angles)
-    #print(edges)
-    return angles, edges, depth_pattern
+    return depth_pattern, edges_end, angles
 
 
 def check_pattern(depth):

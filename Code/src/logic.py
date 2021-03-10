@@ -11,14 +11,14 @@ dict_wheel = {
 84.1: 494,
 85.1: 494,
 86.1: 494,
-87.1: 500,
-89.1: 500,
+87.1: 500, #mønster
+89.1: 500.01, #mønster
 90.1: 498,
 91.1: 498,
 92.1: 498,
 93.1: 500,
 94.1: 500,
-95.1: 502,
+95.1: 502, #mønster
 96.1: 494,
 97.1: 494,
 98.1: 495,
@@ -71,13 +71,16 @@ print(ver)
 def main():
     file_handling()
     #print(measurements)
-    data = extract_info(measurements)
-    print(data)
+    data = extract_info(dict_wheel) # measurements - ekte data
+    #print(data)
 
     pattern, start_edges, pattern_depth = pattern_positions(data) # finding the postitions for mønsteret
     ver = check_pattern(pattern_depth)
-    print(f"PATTERN: {pattern}")
-    print(f"Edges: {start_edges}")
+    
+    #print(f"PATTERN: {pattern}")
+    #print(f"Edges: {start_edges}")
+    
+    print(f"Pattern depth: {pattern_depth}")
     print(ver)
 
 
