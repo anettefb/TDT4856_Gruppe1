@@ -1,6 +1,6 @@
 def pattern_positions(pattern_dictionary):
     """ Will find the position of the different patterns and return a list
-with the angles (keys) where the pattern is. It also returns the starting
+with the angles (keys) where the pattern is. It also returns the end
 edges of the pattern for calculating the depth.
 """
     count = 0
@@ -21,7 +21,7 @@ edges of the pattern for calculating the depth.
                 pattern_dictionary[prev_key] - pattern_dictionary[key] > threshold:
             if prev_key in angles:
                 edges_end.append(key)
-                d = c/count - pattern_dictionary[main_key]
+                d = c/count - (pattern_dictionary[key]+pattern_dictionary[main_key])/2
                 print(d)
                 depth_pattern.append(d)
             count = 0
@@ -41,7 +41,7 @@ edges of the pattern for calculating the depth.
         else:
             if prev_key in angles:
                 edges_end.append(key)
-                d = c/count - pattern_dictionary[key]
+                d = c/count - (pattern_dictionary[key]+pattern_dictionary[main_key])/2
                 print(d)
             main_key = key
             count = 0

@@ -74,11 +74,11 @@ def main():
     data = extract_info(dict_wheel) # measurements - ekte data
     #print(data)
 
-    pattern, start_edges, pattern_depth = pattern_positions(data) # finding the postitions for mønsteret
+    pattern_depth, end_edges, pattern = pattern_positions(data) # finding the postitions for mønsteret
     ver = check_pattern(pattern_depth)
     
-    #print(f"PATTERN: {pattern}")
-    #print(f"Edges: {start_edges}")
+    print(f"PATTERN: {pattern}")
+    print(f"Edges: {end_edges}")
     
     print(f"Pattern depth: {pattern_depth}")
     print(ver)
