@@ -44,6 +44,6 @@ def load():
                 continue
             elif re.match(r'^-?\d+(?:\.\d+)$', list_line[0]) is None:
                 continue
-            angule = float(list_line[0])
+            angle = float(list_line[0])
             distance = float(list_line[1])
-            measurements[angule] = distance
+            measurements[angle] = distance

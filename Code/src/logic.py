@@ -2,7 +2,7 @@ from files import file_handling, measurements
 from pattern import *
 from data_prep import *
 
-dict_wheel = {
+"""dict_wheel = {
 79.1: 502,
 80.1: 501,
 81.1: 502,
@@ -26,7 +26,7 @@ dict_wheel = {
 99.1: 500,
 100.1: 500,
 101.1: 501,
-}
+}"""
 
 # General information
 DATA_START = 80.0
@@ -37,54 +37,24 @@ WINTER_THRESHOLD = 5 #mm
 SUMMER_THRESHOLD = 1.6 #mm
 
 
-
-    
-"""
-def triangulate_measurements(measurement_dict):
-    DATA_START = 80.0
-    DATA_END = 100.0
-    mid_angle = (DATA_END-DATA_START)/2
-    
-    useful_dict = {}
-    
-    for key in measurement_dict:
-    
-"""
-    
-
-
-
-"""
-
-
-#run functions
-pattern, start_edges, pattern_depth = pattern_positions(dict_wheel) # finding the postitions for mønsteret
-ver = check_pattern(pattern_depth)
-
-print(pattern_depth,"\n")
-
-print(ver)
-
-"""
-
-
 def main():
     file_handling()
-    #print(measurements)
-    data = extract_info(measurements) # measurements - ekte data
-    #print(data)
+    data = extract_info(measurements)
     t_data = trig(data)
-    print(t_data)
-
-    pattern_depth, edges, pattern = pattern_positions(t_data) # finding the postitions for mønsteret
+    pattern_depth, edges, pattern = pattern_positions(data)
     ver = check_pattern(pattern_depth)
     
-    print(f"PATTERN angles: {pattern}")
-    print(f"Edges angule: {edges}")
+    #print(f"PATTERN (angles): {pattern}")
+    #print(f"Edges (angle): {edges}")
     
-    
+    print("""██████  ███████ ███████ ██    ██ ██   ████████
+██   ██ ██      ██      ██    ██ ██      ██    ██
+██████  █████   ███████ ██    ██ ██      ██
+██   ██ ██           ██ ██    ██ ██      ██    ██
+██   ██ ███████ ███████  ██████  ███████ ██
+                                                """)
     print(f"Pattern depth: {pattern_depth}")
-    print(f"Verified data: {ver}")
+    print(f"Is the tire approved: {ver}\n")
 
 
 
