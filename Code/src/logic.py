@@ -42,7 +42,7 @@ def main():
     data = extract_info(measurements)
     t_data = trig(data)
     pattern_depth, edges, pattern = pattern_positions(data)
-    ver = check_pattern(pattern_depth)
+    ver = check_pattern(pattern_depth, WINTER_THRESHOLD)
     
     #print(f"PATTERN (angles): {pattern}")
     #print(f"Edges (angle): {edges}")

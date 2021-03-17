@@ -53,8 +53,7 @@ edges of the pattern for calculating the depth.
     return depth_pattern, edges, angles
 
 
-def check_pattern(depth):
-    threshold = 5
+def check_pattern(depth, threshold):
     approved = []
     for item in depth:
         if item > threshold:
