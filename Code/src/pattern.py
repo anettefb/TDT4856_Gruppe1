@@ -11,7 +11,7 @@ edges of the pattern for calculating the depth.
     main_key = list(pattern_dictionary.keys())[0]
 
     c = 0
-    edges_end = []
+    edges = []
     angles = []
     depth_pattern = []
 
@@ -20,7 +20,7 @@ edges of the pattern for calculating the depth.
         if pattern_dictionary[key] < pattern_dictionary[prev_key] and \
                 pattern_dictionary[prev_key] - pattern_dictionary[key] > threshold:
             if prev_key in angles:
-                edges_end.append(key)
+                edges.append(key)
                 d = c/count - (pattern_dictionary[key]+pattern_dictionary[main_key])/2 #tar gjennomsnitt av kantene for å få mest mulig riktig svar (forhindrer skjevslitasje)
                 #print(d)
                 depth_pattern.append(d)
@@ -34,21 +34,26 @@ edges of the pattern for calculating the depth.
             if count >= pattern_threshold:
                 c += pattern_dictionary[key]
                 angles.append(key)
+                if count == pattern_threshold and main_key not in edges:
+                    edges.append(main_key)
+                    
+
                 #print(c)
                 #print(count)
             if key == list(pattern_dictionary.keys())[-1]:
                 depth_pattern.append(pattern_dictionary[key] - pattern_dictionary[main_key])
         else:
             if prev_key in angles:
-                edges_end.append(key)
+                edges.append(key)
                 d = c/count - (pattern_dictionary[key]+pattern_dictionary[main_key])/2
                 #print(d)
             main_key = key
             count = 0
             c = 0
         prev_key = key
+        
 
-    return depth_pattern, edges_end, angles
+    return depth_pattern, edges, angles
 
 
 def check_pattern(depth):
