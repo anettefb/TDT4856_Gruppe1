@@ -25,6 +25,7 @@ def parse(argv):
     for opt, arg in opts:
         if opt == "-h":
             help()
+            sys.exit(2)
         elif opt in ("-i", "--ifile"):
             _inputfile_path = arg
         else:
@@ -47,4 +48,3 @@ def load():
             angle = float(list_line[0])
             distance = float(list_line[1])
             measurements[angle] = distance
-
