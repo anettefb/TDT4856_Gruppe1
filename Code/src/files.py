@@ -34,13 +34,10 @@ def parse(argv):
             help()
     if not os.path.exists(_inputfile_path):
         help()
-        sys.exit(2)
     print("Path is valid: " + str(_inputfile_path) + '\n')
 
 def load():
     global measurements
-    if not os.path.exists(_inputfile_path):
-        help()
     with open(_inputfile_path, 'r') as file:
         for line in file:
             list_line = (line.rstrip()).split(' ')
