@@ -24,7 +24,6 @@ def parse(argv):
         opts, args = getopt.getopt(argv, "hi:", ["ifile"])
     except getopt.GetoptError:
         help()
-        sys.exit(2)
     for opt, arg in opts:
         if opt == "-h":
             help()
