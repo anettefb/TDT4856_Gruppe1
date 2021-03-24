@@ -13,7 +13,10 @@ def file_handling():
 
 def help():
     print("This is a help message. Run the program as follows:")
-    print("python(3) files.py -i <inputfile> [-h]")
+    print("python(3) <main file> -i <inputfile> [-h]")
+    print("\n<inputfile> should be an absolute or relative path to the data file\n")
+    print("Example of path: ../data/points_dekk_8k_1")
+    sys.exit(2)
 
 def parse(argv):
     global _inputfile_path
@@ -25,12 +28,10 @@ def parse(argv):
     for opt, arg in opts:
         if opt == "-h":
             help()
-            sys.exit(2)
         elif opt in ("-i", "--ifile"):
             _inputfile_path = arg
         else:
             help()
-            sys.exit(2)
     if not os.path.exists(_inputfile_path):
         help()
         sys.exit(2)
@@ -38,6 +39,8 @@ def parse(argv):
 
 def load():
     global measurements
+    if not os.path.exists(_inputfile_path):
+        help()
     with open(_inputfile_path, 'r') as file:
         for line in file:
             list_line = (line.rstrip()).split(' ')
